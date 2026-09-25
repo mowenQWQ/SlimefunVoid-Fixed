@@ -1,0 +1,42 @@
+package software.bigbade.slimefunvoid.spells.wind;
+
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+import software.bigbade.slimefunvoid.api.Elements;
+import software.bigbade.slimefunvoid.api.research.Researches;
+import software.bigbade.slimefunvoid.impl.BasicSpell;
+import software.bigbade.slimefunvoid.items.Items;
+import software.bigbade.slimefunvoid.spells.ender.SwapSpell;
+
+public class LevitateSpell extends BasicSpell {
+    public LevitateSpell() {
+        super(Researches.LEVITATE_SPELL.getResearch(), Elements.WIND, Items.LEVITATE_SPELL, 5);
+    }
+
+    @Override
+    public boolean onCast(Player player, ItemStack wand) {
+        float distance = getMultipliedDamage(wand, 20, Elements.VOID);
+        for (Entity entity : player.getNearbyEntities(distance, 5, distance)) {
+            if (entity instanceof LivingEntity && SwapSpell.getLookingAt(player, entity)) {
+                addLevitation((LivingEntity) entity, wand, (int) getMultipliedDamage(wand, 1, Elements.WIND));
+                return true;
+            }
+        }
+        player.sendMessage(ChatColor.RED + "你必须看着射程内的目标!");
+        return false;
+    }
+
+    @Override
+    public void onBackfire(Player player, ItemStack wand) {
+        addLevitation(player, wand, (int) getBackfireDamage(wand, 1, Elements.WIND));
+    }
+
+    private void addLevitation(LivingEntity target, ItemStack wand, int amount) {
+        target.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, amount, (int) getMultipliedDamage(wand, 10, Elements.WIND) * 20));
+    }
+}
