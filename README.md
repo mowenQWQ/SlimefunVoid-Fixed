@@ -2,7 +2,7 @@
 
 SlimefunVoid 的修复版 —— 修复了打开带战利品表的箱子时必炸的 `ArrayIndexOutOfBoundsException`。
 
-> ⚠️ **AI 使用说明**：本作品由 AI 辅助生成（生成时间：2026-09-25）。仅供学习与参考使用，发布、引用或投入使用前请人工核实关键信息。
+> ⚠️ **AI 使用说明**：本作品使用 AI 辅助生成（生成时间：2026-09-25）。仅供学习与参考使用，发布、引用或投入使用前请人工核实关键信息。
 
 > 本仓库是 [BigBadE/SlimefunVoid](https://github.com/BigBadE/SlimefunVoid)（原仓库，2020 年起停止维护）经 [LobbyTech-MC/SlimefunVoid](https://github.com/LobbyTech-MC/SlimefunVoid) fork 适配 1.21.1 后的继续修复版，遵循原项目 GPL-3.0 协议开源。
 >
